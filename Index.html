@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CampusMind - Student Guidance Platform</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f7fb;
+    color: #172033;
+}
+
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 7%;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+.logo span {
+    color: #111827;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #374151;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: #4f46e5;
+}
+
+/* HERO */
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 70px 7%;
+    background: linear-gradient(135deg, #eef2ff, #ffffff);
+}
+
+.hero-text {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #4f46e5;
+}
+
+.hero p {
+    font-size: 19px;
+    color: #5b6475;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 25px;
+    background: #4f46e5;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #3730a3;
+}
+
+.hero-card {
+    width: 390px;
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(79,70,229,0.15);
+}
+
+.hero-card h2 {
+    margin-bottom: 20px;
+}
+
+.progress {
+    margin: 20px 0;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    margin-top: 8px;
+}
+
+.progress-fill {
+    width: 72%;
+    height: 100%;
+    background: #4f46e5;
+    border-radius: 20px;
+}
+
+/* GENERAL */
+section {
+    padding: 80px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #6b7280;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* DISCUSSION */
+.discussion-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.post {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.post h3 {
+    margin-bottom: 8px;
+}
+
+.post p {
+    color: #667085;
+    line-height: 1.6;
+}
+
+.post small {
+    display: block;
+    margin-top: 12px;
+    color: #4f46e5;
+}
+
+.rules {
+    background: #eef2ff;
+    padding: 25px;
+    border-radius: 18px;
+}
+
+.rules li {
+    margin: 15px 0;
+}
+
+/* GUIDANCE */
+.guidance {
+    background: #ffffff;
+}
+
+/* CONTACT */
+.contact {
+    text-align: center;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+}
+
+.contact p {
+    margin: 15px 0 25px;
+}
+
+/* FOOTER */
+footer {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+/* CHATBOT BUTTON */
+.chat-button {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #4f46e5;
+    color: white;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    z-index: 2000;
+}
+
+/* CHATBOT */
+.chatbox {
+    position: fixed;
+    right: 25px;
+    bottom: 100px;
+    width: 350px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    display: none;
+    overflow: hidden;
+    z-index: 2000;
+}
+
+.chat-header {
+    background: #4f46e5;
+    color: white;
+    padding: 18px;
+    font-weight: bold;
+}
+
+.chat-body {
+    height: 330px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px 13px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    max-width: 85%;
+    line-height: 1.4;
+}
+
+.bot {
+    background: #eef2ff;
+}
+
+.user {
+    background: #4f46e5;
+    color: white;
+    margin-left: auto;
+}
+
+.quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 10px;
+}
+
+.quick-buttons button {
+    border: none;
+    background: #eef2ff;
+    color: #3730a3;
+    padding: 7px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    outline: none;
+}
+
+.chat-input button {
+    width: 70px;
+    border: none;
+    background: #4f46e5;
+    color: white;
+    cursor: pointer;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 18px;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.modal-content textarea {
+    height: 120px;
+}
+
+/* MOBILE */
+@media(max-width: 850px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .hero-card {
+        width: 100%;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .discussion-container {
+        grid-template-columns: 1fr;
+    }
+
+    .chatbox {
+        width: calc(100% - 30px);
+        right: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <div class="logo">
+        Campus<span>Mind</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#discussion">Discussion</a></li>
+        <li><a href="#guidance">Guidance</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+
+        <h1>
+            Learn.
+            <span>Discuss.</span>
+            Grow.
+        </h1>
+
+        <p>
+            CampusMind is a student-focused platform for
+            educational discussions, career guidance,
+            project support and student counselling.
+        </p>
+
+        <a href="#services" class="btn">
+            Explore CampusMind
+        </a>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <h2>🎓 Student Dashboard</h2>
+
+        <div class="progress">
+
+            <strong>Learning Progress</strong>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <p>72% completed</p>
+
+        </div>
+
+        <hr><br>
+
+        <p>📚 Tasks Completed: <b>18</b></p>
+        <p>🎯 Current Goal: <b>Java Programming</b></p>
+        <p>💡 Projects: <b>3 Active</b></p>
+
+    </div>
+
+</section>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+    <div class="section-title">
+
+        <h2>What CampusMind Offers</h2>
+
+        <p>
+            Everything students need to learn and grow.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">💬</div>
+
+            <h3>Educational Discussion</h3>
+
+            <p>
+                Ask questions, discuss subjects,
+                share knowledge and learn together
+                with other students.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🎯</div>
+
+            <h3>Career Guidance</h3>
+
+            <p>
+                Explore career paths, technical skills,
+                higher education and future opportunities.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🧠</div>
+
+            <h3>Counselling Support</h3>
+
+            <p>
+                Get general student support for
+                academic pressure, planning and
+                personal development.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DISCUSSION -->
+<section id="discussion">
+
+    <div class="section-title">
+
+        <h2>Student Discussion Hub</h2>
+
+        <p>
+            Ask questions and share your ideas.
+        </p>
+
+    </div>
+
+
+    <div class="discussion-container">
+
+        <div>
+
+            <button class="btn" onclick="openModal()">
+                + Start a Discussion
+            </button>
+
+            <br><br>
+
+            <div class="posts" id="posts">
+
+                <div class="post">
+
+                    <h3>How should I prepare for Java exams?</h3>
+
+                    <p>
+                        I am confused about threads,
+                        JDBC and exception handling.
+                    </p>
+
+                    <small>
+                        👤 Student • Programming
+                    </small>
+
+                </div>
+
+
+                <div class="post">
+
+                    <h3>Which skills should a Computer Engineering student learn?</h3>
+
+                    <p>
+                        Looking for suggestions about
+                        programming and career skills.
+                    </p>
+
+                    <small>
+                        👤 Student • Career
+                    </small>
+
+                </div>
+
+
+                <div class="post">
+
+                    <h3>Project ideas for diploma students</h3>
+
+                    <p>
+                        Please suggest innovative hardware
+                        and software project ideas.
+                    </p>
+
+                    <small>
+                        👤 Student • Projects
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="rules">
+
+            <h3>📌 Community Rules</h3>
+
+            <ul>
+
+                <li>Respect other students.</li>
+
+                <li>Ask educational questions.</li>
+
+                <li>Do not share private information.</li>
+
+                <li>Give helpful answers.</li>
+
+                <li>No spam or inappropriate content.</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GUIDANCE -->
+<section class="guidance" id="guidance">
+
+    <div class="section-title">
+
+        <h2>Guidance Centre</h2>
+
+        <p>
+            Simple guidance for your academic and career journey.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="icon">📚</div>
+
+            <h3>Study Planning</h3>
+
+            <p>
+                Create a practical study schedule,
+                manage subjects and prepare for exams.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">💻</div>
+
+            <h3>Skill Building</h3>
+
+            <p>
+                Learn programming, databases,
+                web development and other technical skills.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🚀</div>
+
+            <h3>Career Choices</h3>
+
+            <p>
+                Understand career options and
+                choose skills according to your goals.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">🌱</div>
+
+            <h3>Student Wellbeing</h3>
+
+            <p>
+                Learn healthy study habits,
+                time management and ways to handle academic pressure.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+    <h2>Build Your Future With CampusMind</h2>
+
+    <p>
+        Learn together. Ask questions. Find your direction.
+    </p>
+
+    <a href="#discussion" class="btn">
+        Join Discussion
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 CampusMind | Student Learning & Guidance Platform
+    </p>
+
+</footer>
+
+
+<!-- CHAT BUTTON -->
+<button class="chat-button" onclick="toggleChat()">
+    💬
+</button>
+
+
+<!-- CHATBOX -->
+<div class="chatbox" id="chatbox">
+
+    <div class="chat-header">
+        🤖 CampusMind EduBot
+    </div>
+
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="message bot">
+            Hi! 👋 I am EduBot. How can I help you today?
+        </div>
+
+    </div>
+
+
+    <div class="quick-buttons">
+
+        <button onclick="quickMessage('study')">
+            📚 Study Plan
+        </button>
+
+        <button onclick="quickMessage('career')">
+            🎯 Career
+        </button>
+
+        <button onclick="quickMessage('project')">
+            💡 Projects
+        </button>
+
+        <button onclick="quickMessage('programming')">
+            💻 Programming
+        </button>
+
+    </div>
+
+
+    <div class="chat-input">
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Ask EduBot..."
+            onkeydown="if(event.key==='Enter') sendMessage()"
+        >
+
+        <button onclick="sendMessage()">
+            Send
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- DISCUSSION MODAL -->
+<div class="modal" id="discussionModal">
+
+    <div class="modal-content">
+
+        <h2>Start a Discussion</h2>
+
+        <input
+            type="text"
+            id="postTitle"
+            placeholder="Discussion title"
+        >
+
+        <textarea
+            id="postText"
+            placeholder="Write your question or idea..."
+        ></textarea>
+
+        <button class="btn" onclick="addPost()">
+            Publish
+        </button>
+
+        <button
+            class="btn"
+            onclick="closeModal()"
+            style="background:#6b7280;"
+        >
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* CHATBOT */
+
+function toggleChat() {
+
+    const chat = document.getElementById("chatbox");
+
+    if(chat.style.display === "block") {
+        chat.style.display = "none";
+    }
+    else {
+        chat.style.display = "block";
+    }
+
+}
+
+
+function addMessage(text, type) {
+
+    const body = document.getElementById("chatBody");
+
+    const message = document.createElement("div");
+
+    message.className = "message " + type;
+
+    message.innerText = text;
+
+    body.appendChild(message);
+
+    body.scrollTop = body.scrollHeight;
+
+}
+
+
+function getBotReply(message) {
+
+    const msg = message.toLowerCase();
+
+
+    if(
+        msg.includes("hello") ||
+        msg.includes("hi") ||
+        msg.includes("hey")
+    ) {
+
+        return "Hello! 👋 Welcome to CampusMind. I can help with study planning, careers, projects and programming.";
+
+    }
+
+
+    if(
+        msg.includes("study") ||
+        msg.includes("exam") ||
+        msg.includes("timetable")
+    ) {
+
+        return "📚 For exams, first list your subjects, divide the syllabus into small topics and study difficult topics first. Use 45–60 minute study sessions with short breaks.";
+
+    }
+
+
+    if(
+        msg.includes("career") ||
+        msg.includes("job")
+    ) {
+
+        return "🎯 For a Computer Engineering career, focus on programming, SQL, Git/GitHub, web development and communication skills. Build projects to show your practical knowledge.";
+
+    }
+
+
+    if(
+        msg.includes("project")
+    ) {
+
+        return "💡 Try projects such as an AI-based student assistant, smart campus system, attendance system, career guidance platform or IoT-based safety project.";
+
+    }
+
+
+    if(
+        msg.includes("java") ||
+        msg.includes("python") ||
+        msg.includes("programming") ||
+        msg.includes("coding")
+    ) {
+
+        return "💻 Start with programming basics, then practice arrays, OOP, exceptions, files and small projects. Practice a little every day.";
+
+    }
+
+
+    if(
+        msg.includes("stress") ||
+        msg.includes("pressure")
+    ) {
+
+        return "🌱 If studies feel overwhelming, break the work into smaller tasks, take short breaks and talk to a trusted teacher, counsellor or family member when needed.";
+
+    }
+
+
+    if(
+        msg.includes("thank")
+    ) {
+
+        return "You're welcome! 😊 Keep learning and keep growing with CampusMind.";
+
+    }
+
+
+    return "I can help with 📚 study plans, 🎯 career guidance, 💡 projects, 💻 programming and general student guidance. Try asking about one of these.";
+
+}
+
+
+function sendMessage() {
+
+    const input = document.getElementById("userInput");
+
+    const message = input.value.trim();
+
+    if(message === "") {
+        return;
+    }
+
+    addMessage(message, "user");
+
+    input.value = "";
+
+    setTimeout(function() {
+
+        const reply = getBotReply(message);
+
+        addMessage(reply, "bot");
+
+    }, 400);
+
+}
+
+
+function quickMessage(type) {
+
+    let question = "";
+
+    if(type === "study") {
+        question = "Give me a study plan";
+    }
+
+    if(type === "career") {
+        question = "Give me career guidance";
+    }
+
+    if(type === "project") {
+        question = "Give me project ideas";
+    }
+
+    if(type === "programming") {
+        question = "Help me with programming";
+    }
+
+    addMessage(question, "user");
+
+    setTimeout(function() {
+
+        addMessage(getBotReply(question), "bot");
+
+    }, 400);
+
+}
+
+
+/* DISCUSSION MODAL */
+
+function openModal() {
+
+    document.getElementById("discussionModal").style.display = "flex";
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("discussionModal").style.display = "none";
+
+}
+
+
+function addPost() {
+
+    const title =
+        document.getElementById("postTitle").value.trim();
+
+    const text =
+        document.getElementById("postText").value.trim();
+
+
+    if(title === "" || text === "") {
+
+        alert("Please enter both title and discussion.");
+
+        return;
+
+    }
+
+
+    const post = document.createElement("div");
+
+    post.className = "post";
+
+    post.innerHTML = `
+        <h3>${escapeHTML(title)}</h3>
+
+        <p>${escapeHTML(text)}</p>
+
+        <small>👤 You • New Discussion</small>
+    `;
+
+
+    document.getElementById("posts").prepend(post);
+
+
+    document.getElementById("postTitle").value = "";
+
+    document.getElementById("postText").value = "";
+
+    closeModal();
+
+}
+
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.innerText = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+window.onclick = function(event) {
+
+    const modal =
+        document.getElementById("discussionModal");
+
+    if(event.target === modal) {
+
+        closeModal();
+
+    }
+
+};
+
+</script>
+
+</body>
+  </html>
