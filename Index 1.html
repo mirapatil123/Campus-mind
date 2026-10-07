@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusMind</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#000;
+    color:#000;
+}
+
+.page{
+    display:none;
+    min-height:100vh;
+}
+
+.page.active{
+    display:block;
+}
+
+/* ---------- COMMON ---------- */
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+}
+
+.box{
+    width:420px;
+    max-width:95%;
+    background:#fff;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 10px 35px rgba(255,255,255,.2);
+}
+
+.center{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo{
+    text-align:center;
+    font-size:38px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+label{
+    display:block;
+    margin:15px 0 7px;
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #aaa;
+    border-radius:7px;
+    font-size:15px;
+    outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+    border:2px solid #000;
+}
+
+button{
+    cursor:pointer;
+}
+
+.main-btn{
+    width:100%;
+    padding:14px;
+    margin-top:20px;
+    border:2px solid #000;
+    background:#000;
+    color:#fff;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.main-btn:hover{
+    background:#fff;
+    color:#000;
+}
+
+.link{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#000;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    color:#d00;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar{
+    background:#000;
+    color:#fff;
+    padding:18px 5%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.nav-logo{
+    font-size:26px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.logout{
+    background:#fff;
+    color:#000;
+    border:0;
+    padding:9px 14px;
+    border-radius:5px;
+}
+
+/* ---------- HOME ---------- */
+
+.hero{
+    background:#fff;
+    min-height:85vh;
+    padding:70px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+}
+
+.hero-text{
+    max-width:600px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    text-decoration:underline;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+    color:#555;
+    margin-bottom:25px;
+}
+
+.hero-card{
+    width:380px;
+    background:#000;
+    color:#fff;
+    padding:30px;
+    border-radius:15px;
+}
+
+.hero-card p{
+    color:#ddd;
+    font-size:15px;
+    margin:12px 0;
+}
+
+.progress{
+    height:10px;
+    background:#444;
+    border-radius:10px;
+    margin:10px 0;
+}
+
+.progress-fill{
+    width:72%;
+    height:100%;
+    background:#fff;
+    border-radius:10px;
+}
+
+/* ---------- SECTIONS ---------- */
+
+section{
+    padding:70px 7%;
+    background:#fff;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#666;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    border:1px solid #ccc;
+    padding:28px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.card:hover{
+    background:#000;
+    color:#fff;
+}
+
+.card p{
+    color:#666;
+    line-height:1.6;
+    margin-top:10px;
+}
+
+.card:hover p{
+    color:#ddd;
+}
+
+.icon{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+/* ---------- DISCUSSION ---------- */
+
+.discussion{
+    background:#f5f5f5;
+}
+
+.discussion-area{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+}
+
+.post{
+    background:#fff;
+    padding:22px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    margin-bottom:15px;
+}
+
+.post p{
+    color:#666;
+    margin:10px 0;
+    line-height:1.5;
+}
+
+.rules{
+    background:#000;
+    color:#fff;
+    padding:25px;
+    border-radius:12px;
+}
+
+.rules li{
+    margin:14px 0;
+}
+
+/* ---------- CONTACT ---------- */
+
+.contact{
+    background:#000;
+    color:#fff;
+    text-align:center;
+}
+
+.contact p{
+    color:#ddd;
+    margin:15px 0 25px;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding:25px;
+}
+
+/* ---------- CHATBOT ---------- */
+
+.chat-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:2px solid #000;
+    background:#fff;
+    font-size:25px;
+    z-index:500;
+}
+
+.chatbox{
+    display:none;
+    position:fixed;
+    right:20px;
+    bottom:90px;
+    width:350px;
+    max-width:90%;
+    background:#fff;
+    border:2px solid #000;
+    border-radius:12px;
+    overflow:hidden;
+    z-index:500;
+}
+
+.chat-header{
+    background:#000;
+    color:#fff;
+    padding:16px;
+    font-weight:bold;
+}
+
+.chat-body{
+    height:280px;
+    overflow-y:auto;
+    padding:12px;
+}
+
+.chat-msg{
+    padding:9px 12px;
+    border-radius:10px;
+    margin-bottom:9px;
+    max-width:85%;
+}
+
+.bot{
+    background:#eee;
+}
+
+.user{
+    background:#000;
+    color:#fff;
+    margin-left:auto;
+}
+
+.quick{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    padding:8px;
+}
+
+.quick button{
+    background:#fff;
+    border:1px solid #000;
+    padding:6px 9px;
+    border-radius:15px;
+}
+
+.chat-input{
+    display:flex;
+    border-top:1px solid #ccc;
+}
+
+.chat-input input{
+    border:0;
+    border-radius:0;
+}
+
+.chat-input button{
+    width:70px;
+    border:0;
+    background:#000;
+    color:#fff;
+}
+
+/* ---------- MODAL ---------- */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal-box{
+    width:450px;
+    max-width:90%;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+}
+
+.modal-box textarea{
+    height:120px;
+    margin-top:15px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:800px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero-card{
+        width:100%;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .discussion-area{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     PAGE 1 : LOGIN
+===================================================== -->
+
+<div class="page active" id="loginPage">
+
+<div class="center">
+
+<div class="box">
+
+<div class="logo">CampusMind</div>
+
+<p class="subtitle">
+Student Learning & Guidance Platform
+</p>
+
+<h2>Student Login</h2>
+
+<label>Username</label>
+
+<input
+type="text"
+id="loginUsername"
+placeholder="Enter username"
+>
+
+<label>Password</label>
+
+<input
+type="password"
+id="loginPassword"
+placeholder="Enter password"
+>
+
+<button class="main-btn" id="loginButton">
+Login
+</button>
+
+<p class="message" id="loginMessage"></p>
+
+<div class="link" id="goCreate">
+Create New Account
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 2 : ACCOUNT CREATION
+===================================================== -->
+
+<div class="page" id="accountPage">
+
+<div class="center">
+
+<div class="box">
+
+<div class="logo">CampusMind</div>
+
+<p class="subtitle">
+Create Student Account
+</p>
+
+<label>Username</label>
+
+<input
+type="text"
+id="newUsername"
+placeholder="Create username"
+>
+
+<label>Password</label>
+
+<input
+type="password"
+id="newPassword"
+placeholder="Create password"
+>
+
+<label>Confirm Password</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm password"
+>
+
+<button class="main-btn" id="createButton">
+Create Account
+</button>
+
+<p class="message" id="accountMessage"></p>
+
+<div class="link" id="goLogin">
+Already have an account? Login
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 3 : STUDENT DETAILS
+===================================================== -->
+
+<div class="page" id="detailsPage">
+
+<div class="center">
+
+<div class="box">
+
+<div class="logo">CampusMind</div>
+
+<p class="subtitle">
+Enter Your Student Details
+</p>
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="Enter full name"
+>
+
+<label>Email</label>
+
+<input
+type="email"
+id="studentEmail"
+placeholder="Enter email"
+>
+
+<label>College Name</label>
+
+<input
+type="text"
+id="studentCollege"
+placeholder="Enter college name"
+>
+
+<label>Course</label>
+
+<select id="studentCourse">
+
+<option value="">Select Course</option>
+<option>Computer Engineering</option>
+<option>Information Technology</option>
+<option>Electronics Engineering</option>
+<option>Mechanical Engineering</option>
+<option>Civil Engineering</option>
+<option>Other</option>
+
+</select>
+
+<label>Semester</label>
+
+<select id="studentSemester">
+
+<option value="">Select Semester</option>
+<option>1st Semester</option>
+<option>2nd Semester</option>
+<option>3rd Semester</option>
+<option>4th Semester</option>
+<option>5th Semester</option>
+<option>6th Semester</option>
+
+</select>
+
+<label>Career Interest</label>
+
+<select id="studentCareer">
+
+<option value="">Select Career</option>
+<option>Software Development</option>
+<option>Web Development</option>
+<option>AI & Machine Learning</option>
+<option>Cyber Security</option>
+<option>Data Science</option>
+<option>Government Jobs</option>
+<option>Entrepreneurship</option>
+
+</select>
+
+<button class="main-btn" id="detailsButton">
+Continue to CampusMind
+</button>
+
+<p class="message" id="detailsMessage"></p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     PAGE 4 : MAIN CAMPUSMIND WEBSITE
+===================================================== -->
+
+<div class="page" id="mainPage">
+
+<nav class="navbar">
+
+<div class="nav-logo">
+CampusMind
+</div>
+
+<ul class="nav-links">
+<li><a href="#home">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#discussion">Discussion</a></li>
+<li><a href="#guidance">Guidance</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<button class="logout" id="logoutButton">
+Logout
+</button>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<div class="hero-text">
+
+<h1>
+Learn.<br>
+<span>Discuss.</span><br>
+Grow.
+</h1>
+
+<p>
+CampusMind is a student-focused platform for
+educational discussions, career guidance,
+project support and student development.
+</p>
+
+<a href="#services"
+class="main-btn"
+style="display:inline-block;width:auto;text-decoration:none;">
+Explore CampusMind
+</a>
+
+</div>
+
+
+<div class="hero-card">
+
+<h2>🎓 Student Dashboard</h2>
+
+<br>
+
+<p>
+Student:
+<strong id="displayName">Student</strong>
+</p>
+
+<p>
+Course:
+<strong id="displayCourse">Computer Engineering</strong>
+</p>
+
+<p>
+Career:
+<strong id="displayCareer">Technology</strong>
+</p>
+
+<br>
+
+<p>Learning Progress</p>
+
+<div class="progress">
+<div class="progress-fill"></div>
+</div>
+
+<p>72% Completed</p>
+
+<hr>
+
+<p>📚 Tasks Completed: <b>18</b></p>
+
+<p>💡 Active Projects: <b>3</b></p>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<div class="section-title">
+
+<h2>What CampusMind Offers</h2>
+
+<p>
+Everything students need to learn and grow.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon">💬</div>
+
+<h3>Educational Discussion</h3>
+
+<p>
+Ask questions, discuss subjects,
+share knowledge and learn with other students.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🎯</div>
+
+<h3>Career Guidance</h3>
+
+<p>
+Explore career paths, technical skills,
+higher education and future opportunities.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🧠</div>
+
+<h3>Counselling Support</h3>
+
+<p>
+Get general support for academic planning,
+student development and career decisions.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DISCUSSION -->
+
+<section class="discussion" id="discussion">
+
+<div class="section-title">
+
+<h2>Student Discussion Hub</h2>
+
+<p>
+Ask questions and share your ideas.
+</p>
+
+</div>
+
+
+<div class="discussion-area">
+
+<div>
+
+<button class="main-btn"
+style="width:auto;"
+id="discussionButton">
++ Start a Discussion
+</button>
+
+<br><br>
+
+<div id="posts">
+
+<div class="post">
+
+<h3>
+How should I prepare for Java exams?
+</h3>
+
+<p>
+I am confused about threads, JDBC
+and exception handling.
+</p>
+
+<small>
+👤 Student • Programming
+</small>
+
+</div>
+
+
+<div class="post">
+
+<h3>
+Which skills should a Computer Engineering student learn?
+</h3>
+
+<p>
+Looking for suggestions about programming
+and career skills.
+</p>
+
+<small>
+👤 Student • Career
+</small>
+
+</div>
+
+
+<div class="post">
+
+<h3>
+Project ideas for diploma students
+</h3>
+
+<p>
+Please suggest innovative hardware
+and software project ideas.
+</p>
+
+<small>
+👤 Student • Projects
+</small>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="rules">
+
+<h3>📌 Community Rules</h3>
+
+<ul>
+
+<li>Respect other students.</li>
+<li>Ask educational questions.</li>
+<li>Do not share private information.</li>
+<li>Give helpful answers.</li>
+<li>No spam or inappropriate content.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GUIDANCE -->
+
+<section id="guidance">
+
+<div class="section-title">
+
+<h2>Guidance Centre</h2>
+
+<p>
+Simple guidance for your academic and career journey.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<div class="icon">📚</div>
+
+<h3>Study Planning</h3>
+
+<p>
+Create a practical study schedule,
+manage subjects and prepare for exams.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">💻</div>
+
+<h3>Skill Building</h3>
+
+<p>
+Learn programming, databases,
+web development and technical skills.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🚀</div>
+
+<h3>Career Choices</h3>
+
+<p>
+Understand career options and
+choose skills according to your goals.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">🌱</div>
+
+<h3>Student Wellbeing</h3>
+
+<p>
+Learn healthy study habits,
+time management and ways to manage pressure.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h2>
+Build Your Future With CampusMind
+</h2>
+
+<p>
+Learn together. Ask questions. Find your direction.
+</p>
+
+<button class="white-btn" id="chatOpenButton">
+Talk to EduBot
+</button>
+
+</section>
+
+
+<footer>
+
+© 2026 CampusMind | Student Learning & Guidance Platform
+
+</footer>
+
+
+<!-- CHAT BUTTON -->
+
+<button class="chat-button" id="chatButton">
+💬
+</button>
+
+
+<!-- CHATBOX -->
+
+<div class="chatbox" id="chatbox">
+
+<div class="chat-header">
+🤖 CampusMind EduBot
+</div>
+
+<div class="chat-body" id="chatBody">
+
+<div class="chat-msg bot">
+Hi! 👋 I am EduBot.
+How can I help you?
+</div>
+
+</div>
+
+<div class="quick">
+
+<button data-question="Give me a study plan">
+📚 Study
+</button>
+
+<button data-question="Give me career guidance">
+🎯 Career
+</button>
+
+<button data-question="Give me project ideas">
+💡 Projects
+</button>
+
+<button data-question="Help me with programming">
+💻 Programming
+</button>
+
+</div>
+
+<div class="chat-input">
+
+<input
+type="text"
+id="chatInput"
+placeholder="Ask EduBot..."
+>
+
+<button id="sendChat">
+Send
+</button>
+
+</div>
+
+</div>
+
+
+<!-- DISCUSSION MODAL -->
+
+<div class="modal" id="discussionModal">
+
+<div class="modal-box">
+
+<h2>Start a Discussion</h2>
+
+<input
+type="text"
+id="postTitle"
+placeholder="Discussion title"
+>
+
+<textarea
+id="postText"
+placeholder="Write your question or idea..."
+></textarea>
+
+<button class="main-btn" id="publishButton">
+Publish
+</button>
+
+<button
+class="main-btn"
+id="cancelButton"
+style="background:#fff;color:#000;">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PAGE FUNCTION
+===================================================== */
+
+function openPage(pageId){
+
+    var pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page){
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* =====================================================
+   ACCOUNT CREATION
+===================================================== */
+
+document.getElementById("createButton").addEventListener("click",function(){
+
+    var username =
+        document.getElementById("newUsername").value.trim();
+
+    var password =
+        document.getElementById("newPassword").value;
+
+    var confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    var message =
+        document.getElementById("accountMessage");
+
+
+    if(username === "" || password === "" || confirmPassword === ""){
+
+        message.innerText =
+        "Please fill all fields.";
+
+        return;
+    }
+
+
+    if(password.length < 4){
+
+        message.innerText =
+        "Password must contain at least 4 characters.";
+
+        return;
+    }
+
+
+    if(password !== confirmPassword){
+
+        message.innerText =
+        "Passwords do not match.";
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "campusUsername",
+        username
+    );
+
+    localStorage.setItem(
+        "campusPassword",
+        password
+    );
+
+
+    message.style.color = "green";
+
+    message.innerText =
+    "Account created successfully!";
+
+
+    setTimeout(function(){
+
+        openPage("detailsPage");
+
+    },700);
+
+});
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+document.getElementById("loginButton").addEventListener("click",function(){
+
+    var username =
+        document.getElementById("loginUsername").value.trim();
+
+    var password =
+        document.getElementById("loginPassword").value;
+
+    var savedUsername =
+        localStorage.getItem("campusUsername");
+
+    var savedPassword =
+        localStorage.getItem("campusPassword");
+
+    var message =
+        document.getElementById("loginMessage");
+
+
+    if(savedUsername === null){
+
+        message.innerText =
+        "No account found. Please create an account first.";
+
+        return;
+    }
+
+
+    if(
+        username === savedUsername &&
+        password === savedPassword
+    ){
+
+        message.style.color = "green";
+
+        message.innerText =
+        "Login successful!";
+
+
+        loadStudentData();
+
+
+        setTimeout(function(){
+
+            openPage("mainPage");
+
+        },500);
+
+    }
+    else{
+
+        message.style.color = "red";
+
+        message.innerText =
+        "Invalid username or password.";
+
+    }
+
+});
+
+
+/* =====================================================
+   CREATE ACCOUNT LINK
+===================================================== */
+
+document.getElementById("goCreate").addEventListener("click",function(){
+
+    openPage("accountPage");
+
+});
+
+
+/* =====================================================
+   LOGIN LINK
+===================================================== */
+
+document.getElementById("goLogin").addEventListener("click",function(){
+
+    openPage("loginPage");
+
+});
+
+
+/* =====================================================
+   STUDENT DETAILS
+===================================================== */
+
+document.getElementById("detailsButton").addEventListener("click",function(){
+
+    var name =
+        document.getElementById("studentName").value.trim();
+
+    var email =
+        document.getElementById("studentEmail").value.trim();
+
+    var college =
+        document.getElementById("studentCollege").value.trim();
+
+    var course =
+        document.getElementById("studentCourse").value;
+
+    var semester =
+        document.getElementById("studentSemester").value;
+
+    var career =
+        document.getElementById("studentCareer").value;
+
+    var message =
+        document.getElementById("detailsMessage");
+
+
+    if(
+        name === "" ||
+        email === "" ||
+        college === "" ||
+        course === "" ||
+        semester === "" ||
+        career === ""
+    ){
+
+        message.style.color = "red";
+
+        message.innerText =
+        "Please fill all student details.";
+
+  
